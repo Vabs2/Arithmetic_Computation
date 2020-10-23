@@ -1,32 +1,45 @@
 #! /bin/bash
+declare -A storeResult
+storeResult=(["result1"]=0 ["result2"]=0 ["result3"]=0 ["result4"]=0 )
 
-function input()
+function getInputs()
 {
-read -p "Enter the a input " input1
-read -p "Enter the b input " input2
-read -p "Enter the c input " input3
+read -p "Enter First Number " input1
+read -p "Enter Second Number " input2
+read -p "Enter Third Number " input3
 
+firstEquation
+secondEquation
+thirdEquation
+fourthEquation
 }
 
 function firstEquation()
 {
-        input
-        firstEquationResult=$(( $input1 + $input2 * $input3))
+
+        firstEquationResult=$(( $input1 + $input2 * $input3 ))
+        storeResult[result1]=$firstEquationResult
         echo $firstEquationResult
 }
-firstEquation
+
 function secondEquation()
 {
-
-        input
         secondEquationResult=$(( $input1 * $input2 + $input3 ))
+        storeResult[result2]=$secondEquationResult
         echo $secondEquationResult
 }
-secondEquation
+
 function thirdEquation()
 {
-        input
         thirdEquationResult=$(( $input3 + $input1 / $input2 ))
+        storeResult[result3]=$thirdEquationResult
         echo $thirdEquationResult
 }
-thirdEquation
+
+function fourthEquation()
+{
+        fourthEquationResult=$(( $input1 % $input2 + $input3 ))
+        storeResult[result4]=$fourthEquationResult
+        echo $fourthEquationResult
+}
+getInputs
