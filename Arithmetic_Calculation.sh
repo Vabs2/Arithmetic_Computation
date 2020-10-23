@@ -15,3 +15,11 @@ function firstEquation()
         echo $firstEquationResult
 }
 firstEquation
+function secondEquation()
+{
+
+        input
+        secondEquationResult=$(( $input1 * $input2 + $input3 ))
+        echo $secondEquationResult
+}
+secondEquation
