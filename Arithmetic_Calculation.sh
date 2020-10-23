@@ -30,3 +30,10 @@ function thirdEquation()
         echo $thirdEquationResult
 }
 thirdEquation
+function fourthEquation()
+{
+        input
+        forthEquationResult=$(( $input1 % $input2 + $input3 ))
+        echo $forthEquationResult
+}
+fourthEquation
