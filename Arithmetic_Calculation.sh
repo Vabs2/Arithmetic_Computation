@@ -1,39 +1,58 @@
 #! /bin/bash
+declare -A storeResult
+declare -a arrayElements
+storeResult=(["1"]=0 ["2"]=0 ["3"]=0 ["4"]=0 )
 
-function input()
+function getInputs()
 {
-read -p "Enter the a input " input1
-read -p "Enter the b input " input2
-read -p "Enter the c input " input3
+read -p "Enter First Number " numberOne
+read -p "Enter Second Number " numberTwo
+read -p "Enter Third Number " numberThree
 
+findResult
 }
 
-function firstEquation()
+function findResult()
 {
-        input
-        firstEquationResult=$(( $input1 + $input2 * $input3))
-        echo $firstEquationResult
-}
-firstEquation
-function secondEquation()
-{
+        firstEquationResult=$(( $numberOne + $numberTwo * $numberThree ))
+        storeResult[1]=$firstEquationResult
 
-        input
-        secondEquationResult=$(( $input1 * $input2 + $input3 ))
-        echo $secondEquationResult
+        secondEquationResult=$(( $numberOne * $numberTwo + $numberThree  ))
+        storeResult[2]=$secondEquationResult
+
+        thirdEquationResult=$(( $numberThree + $numberOne / $numberTwo ))
+        storeResult[3]=$thirdEquationResult
+
+        fourthEquationResult=$(( $numberOne % $numberTwo + $numberThree  ))
+        storeResult[4]=$fourthEquationResult
 }
-secondEquation
-function thirdEquation()
+
+function readValuesToArray()
 {
-        input
-        thirdEquationResult=$(( $input3 + $input1 / $input2 ))
-        echo $thirdEquationResult
+        for ((index=0; index<=${#storeResult[@]}; index++ ))
+        do
+                arrayElements[index]=${storeResult[$index]}
+        done
+        descendingSort
 }
-thirdEquation
-function fourthEquation()
+
+function descendingSort()
 {
-        input
-        forthEquationResult=$(( $input1 % $input2 + $input3 ))
-        echo $forthEquationResult
+        temp=0
+        for ((i=0; i<${#arrayElements[@]}; i++ ))
+        do
+                for ((j=i+1; j<${#arrayElements[@]}; j++ ))
+                do
+                        if [[ ${arrayElements[i]%.*} -lt ${arrayElements[j]%.*} ]]
+                        then
+                                temp=${arrayElements[i]}
+                                arrayElements[i]=${arrayElements[j]}
+                                arrayElements[j]=$temp
+                        fi
+                done
+        done
+        echo Array In Descending Order..${arrayElements[@]}
 }
-fourthEquation
+
+getInputs
+readValuesToArray
