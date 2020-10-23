@@ -23,3 +23,10 @@ function secondEquation()
         echo $secondEquationResult
 }
 secondEquation
+function thirdEquation()
+{
+        input
+        thirdEquationResult=$(( $input3 + $input1 / $input2 ))
+        echo $thirdEquationResult
+}
+thirdEquation
